@@ -81,7 +81,7 @@ class App(QWidget):
 
         self.tableWidget.resizeColumnsToContents()
         # Set a minimum width for each column
-        min_column_width = 100
+        min_column_width = 70
         for col_index in range(self.tableWidget.columnCount()):
             current_width = self.tableWidget.columnWidth(col_index)
             if current_width < min_column_width:
