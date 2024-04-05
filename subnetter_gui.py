@@ -28,10 +28,10 @@ class App(QWidget):
 
         # Horizontal layout for labels
         labelLayout = QHBoxLayout()
-        labelA = QLabel('Enter IPv4 address with subnet mask length:')
-        labelB = QLabel('Enter required host numbers, seperated by spaces:')
-        labelLayout.addWidget(labelA)
-        labelLayout.addWidget(labelB)
+        LabelIP = QLabel('Enter IPv4 address with subnet mask length:')
+        labelHosts = QLabel('Enter required host numbers, seperated by spaces:')
+        labelLayout.addWidget(LabelIP)
+        labelLayout.addWidget(labelHosts)
 
         # Horizontal layout for input fields
         inputLayout = QHBoxLayout()
