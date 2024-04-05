@@ -161,7 +161,7 @@ class IPV4_SUBNET:
         this function is for reducing searching operations.
         make sure that it only searches the minimum host bits
         '''
-        host_bits = int(math.sqrt(sum(hosts))) + 2
+        host_bits = int(math.log(sum(hosts),2)) + 2
         return 32 - host_bits if host_bits < 32 - masklen else masklen
             
 
