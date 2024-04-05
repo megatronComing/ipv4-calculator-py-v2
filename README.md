@@ -8,12 +8,12 @@ required modules:
 - tabulate
 - ipaddress
 install the above modules by commands:
-pip install ipaddress
-pip install tabulate
+- pip install ipaddress
+- pip install tabulate
 ## Command
-Run the following command from the cmd window:
-python find_subnet_v21.py IP_ADDR/SUBNETMASK_LEN HOSTS1 HOSTS2  HOSTS3 HOSTS4
-e.g. python find_subnet_v21.py 192.168.1.0/24 59 15 7 2 29
+Run the following command from the cmd window:<br>
+python find_subnet_v21.py IP_ADDR/SUBNETMASK_LEN HOSTS1 HOSTS2  HOSTS3 HOSTS4<br>
+e.g. python find_subnet_v21.py 192.168.1.0/24 59 15 7 2 29<br>
 ![image](https://github.com/megatronComing/ipv4-calculator-py-v2/assets/114308295/256fea70-9bf7-4582-9f97-36e63673d672)
 
 # GUI mode
