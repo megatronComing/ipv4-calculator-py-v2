@@ -1,7 +1,7 @@
 This script searches subnets by required host numbers from a given ipv4 network ID with subnet length.
 
 # Rum from command line
-## Prerequisite
+## Prerequisites
 setting the path of python.exe & pip.exe to the PATH environment variable is highly recommended
 required modules:
 - tabulate
@@ -16,7 +16,7 @@ e.g. python find_subnet_v21.py 192.168.1.0/24 59 15 7 2 29
 ![image](https://github.com/megatronComing/ipv4-calculator-py-v2/assets/114308295/256fea70-9bf7-4582-9f97-36e63673d672)
 
 # GUI mode
-## Prerequisite
+## Prerequisites
 setting the path of python.exe & pip.exe to the PATH environment variable is highly recommended
 required modules:
 - tabulate
