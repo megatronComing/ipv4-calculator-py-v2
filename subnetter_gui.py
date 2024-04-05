@@ -9,7 +9,7 @@ class App(QWidget):
     
     def initUI(self):
         self.setWindowTitle('IPv4 subnetting calculator')
-        self.setGeometry(100, 100, 900, 400)
+        self.setGeometry(100, 100, 700, 400)
 
         # Main vertical layout
         mainLayout = QVBoxLayout(self)
