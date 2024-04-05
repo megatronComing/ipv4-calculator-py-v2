@@ -2,15 +2,6 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QDesktopWidget
 import find_subnet_v21 as sbn
 
-def myfunc(a, b):
-    # Generate header list (List A) and column data list (List B)
-    headers = ['Column 1', 'Column 2', 'Column 3', 'Column 4', 'Column 5', 'Column 6']
-    data = [
-        [f'{a}1 long text to test', f'{b}1', f'{a}2 text', f'{b}2 longer text here', f'{a}3', f'{b}3 short'],
-        [f'{a}2', f'{b}2 very long text to test', f'{a}3 text', f'{b}3 longer text here', f'{a}1', f'{b}1 short']
-    ]
-    return headers, data
-
 class App(QWidget):
     def __init__(self, tableHeader:str):
         super().__init__()
