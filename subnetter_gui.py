@@ -3,10 +3,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLi
 import find_subnet_v21 as sbn
 
 class App(QWidget):
-    def __init__(self, tableHeader:str):
+    def __init__(self):
         super().__init__()
-        #self.title = 'PyQt Example'
-        self.tableHeader = tableHeader
         self.initUI()
     
     def initUI(self):
@@ -38,9 +36,7 @@ class App(QWidget):
 
         # Table to display results
         self.tableWidget = QTableWidget()
-        self.tableWidget.setColumnCount(len(self.tableHeader))
-        self.tableWidget.setHorizontalHeaderLabels(self.tableHeader)
-
+        
         # Author and contact information
         authorLabel = QLabel('Created by: Huafeng Yu - hfyu.hzcn@gmail.com', self)
         #authorLabel.setAlignment(Qt.AlignCenter)  # Center the text
@@ -69,8 +65,6 @@ class App(QWidget):
         myip = sbn.IPV4_SUBNET(ip, hosts)
         headers, data = myip.get_formatted_result()
         
-        #headers, data = myfunc(a, b)
-
         self.tableWidget.setColumnCount(len(headers))
         self.tableWidget.setHorizontalHeaderLabels(headers)
         self.tableWidget.setRowCount(len(data))
@@ -90,7 +84,7 @@ class App(QWidget):
 def main():
     tableHeader = ['Host Number', 'SubnetID', 'Subnet Mask', 'Mask Len', 'Usable Hosts', 'First Host', 'Last Host', 'Broadcast Addr']
     app = QApplication(sys.argv)
-    ex = App(tableHeader)
+    ex = App()
     ex.show()
     sys.exit(app.exec_())
 
