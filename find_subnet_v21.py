@@ -115,7 +115,33 @@ def _get_subnet(ip:str, masklen:int) ->list[dict]:
         
     return result
 
-
+def validate_ip(ip:str) -> tuple:
+        '''
+        To validate an IPv4 address
+        Input:
+            ip: ipv4 address with subnet mask length, e.g. 192.168.0.1/24
+        Return:
+            a tuple with three elements. 
+            element 1: bool, to indicate whether the ip address is valid
+            element 2: str, the dotted ipv4 address, all spaces removed
+            element 3: int, the subnet mask length
+        
+        '''
+        if not isinstance(ip, str):
+            return (False, None, None)
+        if not '/' in ip: #no subnet mask length given
+            return (False, None, None)
+        tmp = ip.split('/')
+        ip_bytes = [byte.strip() for byte in tmp[0].split('.')]
+        if len(ip_bytes) != 4:
+            return (False, None, None)
+        for byte in ip_bytes:
+            if int(byte) < 0 or int(byte) > 255:
+                return (False, None, None)
+        masklen = int(tmp[1].strip())
+        if masklen <= 0 or masklen >= 32:
+            return (False, None, None)
+        return (True,'.'.join(ip_bytes), masklen)
 
 class IPV4_SUBNET:
     def __init__(self, ip:str, hosts_required:list) -> None:
@@ -142,7 +168,7 @@ class IPV4_SUBNET:
                 self.hosts_sorted.append(matched_data['max_hosts'])
                 self.corresponding_host_bits.append(matched_data['host_bits'])
         
-        isvalid, ipstr, masklen = self._validate_ip(ip)
+        isvalid, ipstr, masklen = validate_ip(ip)
         masklen = self._pre_handle_ip(ip, masklen, self.hosts)
 
         if isvalid:
@@ -265,33 +291,7 @@ class IPV4_SUBNET:
         print(f'FAILED to match max host number {host_number}')
         return None
     
-    def _validate_ip(self, ip:str) -> tuple:
-        '''
-        To validate an IPv4 address
-        Input:
-            ip: ipv4 address with subnet mask length, e.g. 192.168.0.1/24
-        Return:
-            a tuple with three elements. 
-            element 1: bool, to indicate whether the ip address is valid
-            element 2: str, the dotted ipv4 address, all spaces removed
-            element 3: int, the subnet mask length
-        
-        '''
-        if not isinstance(ip, str):
-            return (False, None, None)
-        if not '/' in ip: #no subnet mask length given
-            return (False, None, None)
-        tmp = ip.split('/')
-        ip_bytes = [byte.strip() for byte in tmp[0].split('.')]
-        if len(ip_bytes) != 4:
-            return (False, None, None)
-        for byte in ip_bytes:
-            if int(byte) < 0 or int(byte) > 255:
-                return (False, None, None)
-        masklen = int(tmp[1].strip())
-        if masklen <= 0 or masklen >= 32:
-            return (False, None, None)
-        return (True,'.'.join(ip_bytes), masklen)
+    
     
     def _solve_subnet(self, ip:str, masklen:int, parent:int) -> None:
         '''
