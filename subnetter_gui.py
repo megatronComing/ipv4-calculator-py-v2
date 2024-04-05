@@ -1,6 +1,24 @@
+'''
+GUI for searching for a minimum subnet for every host number required out of a give IPV4 network address.
+Requirements:
+    find_subnet_v21
+By Huafeng Yu, hfyu.hzcn@gmail.com
+'''
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QDesktopWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QDesktopWidget, QMessageBox
 import find_subnet_v21 as sbn
+import traceback
+
+def exception_hook(exctype, value, trace):
+    """
+    Global exception handler
+    :param exctype: exception type
+    :param value: exception object
+    :param trace: Traceback object
+    """
+    error_msg = ''.join(traceback.format_exception(exctype, value, trace))
+    QMessageBox.critical(None, 'An Exception Occurred', f'An unexpected error has occurred:\n{error_msg}', QMessageBox.Ok)
+    sys.exit(1)
 
 class App(QWidget):
     def __init__(self):
@@ -61,7 +79,14 @@ class App(QWidget):
                 hosts.append(int(host))
             except:
                 pass
-        
+        isvalid, tmp1, tmp2 = sbn.validate_ip(ip)
+        if not isvalid:
+            QMessageBox.critical(self, 'Invalid input', "Please input a valid ip address, like 192.168.1.0/24", QMessageBox.Ok )
+            return
+
+        if len(hosts) == 0:
+            QMessageBox.critical(self, 'Invalid input', "Please input valid host numbers", QMessageBox.Ok )
+            return
         myip = sbn.IPV4_SUBNET(ip, hosts)
         headers, data = myip.get_formatted_result()
         
@@ -82,7 +107,7 @@ class App(QWidget):
                 self.tableWidget.setColumnWidth(col_index, min_column_width)
 
 def main():
-    tableHeader = ['Host Number', 'SubnetID', 'Subnet Mask', 'Mask Len', 'Usable Hosts', 'First Host', 'Last Host', 'Broadcast Addr']
+    sys.excepthook = exception_hook
     app = QApplication(sys.argv)
     ex = App()
     ex.show()
