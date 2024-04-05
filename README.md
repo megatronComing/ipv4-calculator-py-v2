@@ -1,4 +1,5 @@
 This script searches subnets by required host numbers from a given ipv4 network ID with subnet length.
+Compared to project ipv4-calculator-py, this version is more efficient, and it supports GUI.
 
 # Rum from command line
 ## Prerequisites
