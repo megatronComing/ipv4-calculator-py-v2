@@ -7,7 +7,7 @@ setting the path of python.exe & pip.exe to the PATH environment variable is hig
 required modules:
 - tabulate
 - ipaddress
-install the above modules by commands:
+<br>install the above modules by commands:
 - pip install ipaddress
 - pip install tabulate
 ## Command
@@ -18,8 +18,8 @@ e.g. python find_subnet_v21.py 192.168.1.0/24 59 15 7 2 29<br>
 
 # GUI mode
 ## Prerequisites
-setting the path of python.exe & pip.exe to the PATH environment variable is highly recommended
-required modules:
+setting the path of python.exe & pip.exe to the PATH environment variable is highly recommended<br>
+required modules:<br>
 - tabulate
 - ipaddress
 - pyqt5
